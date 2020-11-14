@@ -38,8 +38,7 @@ public class MusicOuterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             return new SingleViewHolder(LayoutInflater.from(context).inflate(R.layout.single_rec_view_list_item, parent, false));
         else if (viewType == MULTI_TYPE)
             return new MultiViewHolder(LayoutInflater.from(context).inflate(R.layout.multi_rec_view_list_item, parent, false));
-
-        return null;
+        else return null;
     }
 
     @Override
@@ -89,7 +88,6 @@ public class MusicOuterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         private final RecyclerView recyclerView;
         private final RelativeLayout relativeLayout;
 
-
         public MultiViewHolder(@NonNull View itemView) {
             super(itemView);
             recyclerView = itemView.findViewById(R.id.recViewMulti);
@@ -98,7 +96,7 @@ public class MusicOuterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         private void setRecyclerView(int position){
             recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
-            InnerAdapter innerAdapter = new InnerAdapter();
+            InnerAdapter innerAdapter = new InnerAdapter(false);
             recyclerView.setAdapter(innerAdapter);
             innerAdapter.setImagesArrayList(musicItems.get(position).getImageArrayList());
         }

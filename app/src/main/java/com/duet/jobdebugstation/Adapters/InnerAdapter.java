@@ -4,7 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 
 import androidx.annotation.NonNull;
@@ -18,10 +20,12 @@ public class InnerAdapter extends RecyclerView.Adapter<InnerAdapter.MyViewHolder
 
     private ArrayList<Integer> imagesArrayList;
     private Context context;
+    private final boolean singleCallType;
 
-    public InnerAdapter() {
+    public InnerAdapter(Boolean singleCallType) {
         context = null;
         imagesArrayList = new ArrayList<>();
+        this.singleCallType = singleCallType;
     }
 
     @NonNull
@@ -34,6 +38,7 @@ public class InnerAdapter extends RecyclerView.Adapter<InnerAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.setImage(position);
+        holder.setAnimation();
     }
 
     @Override
@@ -44,14 +49,21 @@ public class InnerAdapter extends RecyclerView.Adapter<InnerAdapter.MyViewHolder
     class MyViewHolder extends RecyclerView.ViewHolder{
 
         private final ImageView imageView;
+        private final RelativeLayout relativeLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageViewInnerAdapter);
+            relativeLayout = itemView.findViewById(R.id.relativeLayoutInfoInner);
         }
 
         private void setImage(int position){
             imageView.setImageResource(imagesArrayList.get(position));
+        }
+
+        private void setAnimation(){
+            if(singleCallType)
+                relativeLayout.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation_another));
         }
     }
 

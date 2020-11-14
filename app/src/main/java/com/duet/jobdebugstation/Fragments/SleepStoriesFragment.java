@@ -32,7 +32,7 @@ public class SleepStoriesFragment extends Fragment {
 
     private ArrayList<MusicItem> createMusicItemArrayList(){
         ArrayList<MusicItem> musicItemArrayList = new ArrayList<>();
-        musicItemArrayList.add(new MusicItem(true,R.drawable.item_single_rec, null));
+        musicItemArrayList.add(new MusicItem(true, R.drawable.item_single_rec, null));
         ArrayList<Integer> imageArrayList = new ArrayList<>();
         for(int i = 1; i <= 10; ++i){
             imageArrayList.add(R.drawable.night_island);

@@ -5,19 +5,26 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
+import com.duet.jobdebugstation.Fragments.SleepMusicFragment;
 import com.duet.jobdebugstation.Fragments.SleepStoriesFragment;
 import com.duet.jobdebugstation.Fragments.WelcomeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Fragment welcomeFragment, sleepStoriesFragment;
+    private Fragment welcomeFragment, sleepStoriesFragment, sleepMusicFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //loadWelcomeFragment();
-        loadSleepStoriesFragment();
+        //loadSleepStoriesFragment();
+        loadSleepMusicFragment();
+    }
+
+    private void loadSleepMusicFragment(){
+        if(sleepStoriesFragment == null) sleepMusicFragment = new SleepMusicFragment();
+        loadFragment(sleepMusicFragment);
     }
 
     private void loadWelcomeFragment(){
