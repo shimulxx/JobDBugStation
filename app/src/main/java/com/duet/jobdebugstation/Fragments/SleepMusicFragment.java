@@ -29,7 +29,7 @@ public class SleepMusicFragment extends Fragment {
     private void initRecView(View view){
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewSleepMusic);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        InnerAdapter innerAdapter = new InnerAdapter(true);
+        InnerAdapter innerAdapter = new InnerAdapter(true, false);
         recyclerView.setAdapter(innerAdapter);
         innerAdapter.setImagesArrayList(createImageArrayList(20));
     }

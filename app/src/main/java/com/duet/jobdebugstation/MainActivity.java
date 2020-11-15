@@ -4,14 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import com.duet.jobdebugstation.Adapters.InnerAdapter;
+import com.duet.jobdebugstation.Fragments.BeforePlayFragment;
 import com.duet.jobdebugstation.Fragments.SleepMusicFragment;
 import com.duet.jobdebugstation.Fragments.SleepStoriesFragment;
 import com.duet.jobdebugstation.Fragments.WelcomeFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements InnerAdapter.Work {
 
-    private Fragment welcomeFragment, sleepStoriesFragment, sleepMusicFragment;
+    private Fragment welcomeFragment, sleepStoriesFragment, sleepMusicFragment, beforePlayFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,16 @@ public class MainActivity extends AppCompatActivity {
         //loadWelcomeFragment();
         //loadSleepStoriesFragment();
         loadSleepMusicFragment();
+        //loadBeforePlayFragment(0);
+    }
+
+    @Override
+    public void loadBeforePlayFragment(int position){
+        beforePlayFragment = new BeforePlayFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("key", position);
+        beforePlayFragment.setArguments(bundle);
+        loadFragment(beforePlayFragment);
     }
 
     private void loadSleepMusicFragment(){

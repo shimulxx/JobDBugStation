@@ -96,7 +96,7 @@ public class MusicOuterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         private void setRecyclerView(int position){
             recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
-            InnerAdapter innerAdapter = new InnerAdapter(false);
+            InnerAdapter innerAdapter = new InnerAdapter(false, false);
             recyclerView.setAdapter(innerAdapter);
             innerAdapter.setImagesArrayList(musicItems.get(position).getImageArrayList());
         }

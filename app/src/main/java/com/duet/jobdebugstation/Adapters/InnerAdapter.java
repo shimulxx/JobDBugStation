@@ -20,18 +20,31 @@ public class InnerAdapter extends RecyclerView.Adapter<InnerAdapter.MyViewHolder
 
     private ArrayList<Integer> imagesArrayList;
     private Context context;
-    private final boolean singleCallType;
+    private final boolean singleCallType, beforeCallType;
 
-    public InnerAdapter(Boolean singleCallType) {
+    public interface Work{
+        void loadBeforePlayFragment(int position);
+    }
+
+    private Work work;
+
+    public InnerAdapter(Boolean singleCallType, Boolean beforeCallType) {
         context = null;
         imagesArrayList = new ArrayList<>();
         this.singleCallType = singleCallType;
+        this.beforeCallType = beforeCallType;
     }
+
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if(context == null) context = parent.getContext();
+        if(context == null) {
+            context = parent.getContext();
+            work = (Work)context;
+        }
+        if(beforeCallType)
+            return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.inner_adapter_list_item_before, parent, false));
         return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.inner_adapter_list_item, parent, false));
     }
 
@@ -39,6 +52,7 @@ public class InnerAdapter extends RecyclerView.Adapter<InnerAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.setImage(position);
         holder.setAnimation();
+        holder.setOnclickListener(position);
     }
 
     @Override
@@ -55,6 +69,15 @@ public class InnerAdapter extends RecyclerView.Adapter<InnerAdapter.MyViewHolder
             super(itemView);
             imageView = itemView.findViewById(R.id.imageViewInnerAdapter);
             relativeLayout = itemView.findViewById(R.id.relativeLayoutInfoInner);
+        }
+
+        private void setOnclickListener(int position){
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    work.loadBeforePlayFragment(position);
+                }
+            });
         }
 
         private void setImage(int position){
