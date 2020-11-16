@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class MusicItem {
     private final boolean singleType;
-    private ArrayList<Integer> imageArrayList;
+    private ArrayList<ImageNameWithId> imageArrayList;
     private final int singleId;
 
-    public MusicItem(boolean singleType, int singleId, ArrayList<Integer> imageArrayList) {
+    public MusicItem(boolean singleType, int singleId, ArrayList<ImageNameWithId> imageArrayList) {
         this.singleType = singleType;
         this.imageArrayList = imageArrayList;
         this.singleId = singleId;
@@ -15,7 +15,7 @@ public class MusicItem {
 
     public boolean isSingleType() { return singleType; }
 
-    public ArrayList<Integer> getImageArrayList() {
+    public ArrayList<ImageNameWithId> getImageArrayList() {
         return imageArrayList;
     }
 

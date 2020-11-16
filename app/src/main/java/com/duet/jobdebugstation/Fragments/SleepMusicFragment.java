@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.duet.jobdebugstation.Adapters.InnerAdapter;
+import com.duet.jobdebugstation.Model.ImageNameWithId;
 import com.duet.jobdebugstation.R;
 
 import java.util.ArrayList;
@@ -34,11 +35,13 @@ public class SleepMusicFragment extends Fragment {
         innerAdapter.setImagesArrayList(createImageArrayList(20));
     }
 
-    private ArrayList<Integer> createImageArrayList(int numberOfItems){
-        ArrayList<Integer> imageArrayList = new ArrayList<>();
+    private ArrayList<ImageNameWithId> createImageArrayList(int numberOfItems){
+        ArrayList<ImageNameWithId> imageArrayList = new ArrayList<>();
         for(int i = 1; i <= numberOfItems; ++i){
-            imageArrayList.add(R.drawable.night_island);
-            imageArrayList.add(R.drawable.sweet_sleep);
+            imageArrayList.add(new ImageNameWithId(R.drawable.night_island_single, getResources().getString(R.string.night_island)));
+            imageArrayList.add(new ImageNameWithId(R.drawable.sweet_sleep_single, getResources().getString(R.string.sweet_sleep)));
+            imageArrayList.add(new ImageNameWithId(R.drawable.good_night_single, getResources().getString(R.string.good_night)));
+            imageArrayList.add(new ImageNameWithId(R.drawable.moon_clouds_single, getResources().getString(R.string.moon_clouds)));
         }
         return imageArrayList;
     }

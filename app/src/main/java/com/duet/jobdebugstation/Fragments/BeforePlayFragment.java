@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.duet.jobdebugstation.Adapters.InnerAdapter;
+import com.duet.jobdebugstation.Model.ImageNameWithId;
 import com.duet.jobdebugstation.R;
 
 import java.util.ArrayList;
@@ -31,14 +32,34 @@ public class BeforePlayFragment extends Fragment {
         int position = getArguments().getInt("key");
         ImageView titleImageView = view.findViewById(R.id.titleImageView);
         TextView musicName = view.findViewById(R.id.textMusicName);
-        if(position % 2 == 0) {
-            titleImageView.setImageResource(R.drawable.night_island_large);
-            musicName.setText(getResources().getString(R.string.night_island));
+        position = position % 4;
+        switch (position){
+            case 0 : loadNightIsland(titleImageView, musicName); break;
+            case 1 : loadSweetSleep(titleImageView, musicName); break;
+            case 2 : loadGoodNight(titleImageView, musicName); break;
+            case 3 : loadMoonClouds(titleImageView, musicName); break;
+            default: break;
         }
-        else {
-            titleImageView.setImageResource(R.drawable.sweet_sleep_large);
-            musicName.setText(getResources().getString(R.string.sweet_sleep));
-        }
+    }
+
+    private void loadNightIsland(ImageView titleImageView, TextView musicName){
+        titleImageView.setImageResource(R.drawable.night_island_large);
+        musicName.setText(getResources().getString(R.string.night_island));
+    }
+
+    private void loadSweetSleep(ImageView titleImageView, TextView musicName){
+        titleImageView.setImageResource(R.drawable.sweet_sleep_large);
+        musicName.setText(getResources().getString(R.string.sweet_sleep));
+    }
+
+    private void loadGoodNight(ImageView titleImageView, TextView musicName){
+        titleImageView.setImageResource(R.drawable.good_night_large);
+        musicName.setText(getResources().getString(R.string.good_night));
+    }
+
+    private void loadMoonClouds(ImageView titleImageView, TextView musicName){
+        titleImageView.setImageResource(R.drawable.moon_clouds_large);
+        musicName.setText(getResources().getString(R.string.moon_clouds));
     }
 
     private void initRecView(View view){
@@ -49,11 +70,13 @@ public class BeforePlayFragment extends Fragment {
         innerAdapter.setImagesArrayList(createImageArrayList(20));
     }
 
-    private ArrayList<Integer> createImageArrayList(int numberOfItems){
-        ArrayList<Integer> imageArrayList = new ArrayList<>();
+    private ArrayList<ImageNameWithId> createImageArrayList(int numberOfItems){
+        ArrayList<ImageNameWithId> imageArrayList = new ArrayList<>();
         for(int i = 1; i <= numberOfItems; ++i){
-            imageArrayList.add(R.drawable.night_island_single);
-            imageArrayList.add(R.drawable.sweet_sleep_single);
+            imageArrayList.add(new ImageNameWithId(R.drawable.night_island_single, getResources().getString(R.string.night_island)));
+            imageArrayList.add(new ImageNameWithId(R.drawable.sweet_sleep_single, getResources().getString(R.string.sweet_sleep)));
+            imageArrayList.add(new ImageNameWithId(R.drawable.good_night_single, getResources().getString(R.string.good_night)));
+            imageArrayList.add(new ImageNameWithId(R.drawable.moon_clouds_single, getResources().getString(R.string.moon_clouds)));
         }
         return imageArrayList;
     }

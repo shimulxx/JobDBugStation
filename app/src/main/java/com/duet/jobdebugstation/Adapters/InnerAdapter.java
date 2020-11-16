@@ -7,18 +7,20 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.duet.jobdebugstation.Model.ImageNameWithId;
 import com.duet.jobdebugstation.R;
 
 import java.util.ArrayList;
 
 public class InnerAdapter extends RecyclerView.Adapter<InnerAdapter.MyViewHolder> {
 
-    private ArrayList<Integer> imagesArrayList;
+    private ArrayList<ImageNameWithId> imagesArrayList;
     private Context context;
     private final boolean singleCallType, beforeCallType;
 
@@ -53,6 +55,7 @@ public class InnerAdapter extends RecyclerView.Adapter<InnerAdapter.MyViewHolder
         holder.setImage(position);
         holder.setAnimation();
         holder.setOnclickListener(position);
+        if(!beforeCallType) holder.setName(position);
     }
 
     @Override
@@ -64,11 +67,13 @@ public class InnerAdapter extends RecyclerView.Adapter<InnerAdapter.MyViewHolder
 
         private final ImageView imageView;
         private final RelativeLayout relativeLayout;
+        private final TextView textViewName;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageViewInnerAdapter);
             relativeLayout = itemView.findViewById(R.id.relativeLayoutInfoInner);
+            textViewName = itemView.findViewById(R.id.textViewMusicName);
         }
 
         private void setOnclickListener(int position){
@@ -81,7 +86,11 @@ public class InnerAdapter extends RecyclerView.Adapter<InnerAdapter.MyViewHolder
         }
 
         private void setImage(int position){
-            imageView.setImageResource(imagesArrayList.get(position));
+            imageView.setImageResource(imagesArrayList.get(position).getImageId());
+        }
+
+        private void setName(int position){
+            textViewName.setText(imagesArrayList.get(position).getName());
         }
 
         private void setAnimation(){
@@ -90,7 +99,7 @@ public class InnerAdapter extends RecyclerView.Adapter<InnerAdapter.MyViewHolder
         }
     }
 
-    public void setImagesArrayList(ArrayList<Integer> imagesArrayList) {
+    public void setImagesArrayList(ArrayList<ImageNameWithId> imagesArrayList) {
         this.imagesArrayList = imagesArrayList;
         notifyDataSetChanged();
     }

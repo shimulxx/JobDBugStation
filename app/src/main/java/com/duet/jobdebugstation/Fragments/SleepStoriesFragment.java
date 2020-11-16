@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.duet.jobdebugstation.Adapters.MusicOuterAdapter;
+import com.duet.jobdebugstation.Model.ImageNameWithId;
 import com.duet.jobdebugstation.Model.MusicItem;
 import com.duet.jobdebugstation.R;
 
@@ -33,10 +34,12 @@ public class SleepStoriesFragment extends Fragment {
     private ArrayList<MusicItem> createMusicItemArrayList(){
         ArrayList<MusicItem> musicItemArrayList = new ArrayList<>();
         musicItemArrayList.add(new MusicItem(true, R.drawable.item_single_rec, null));
-        ArrayList<Integer> imageArrayList = new ArrayList<>();
+        ArrayList<ImageNameWithId> imageArrayList = new ArrayList<>();
         for(int i = 1; i <= 10; ++i){
-            imageArrayList.add(R.drawable.night_island);
-            imageArrayList.add(R.drawable.sweet_sleep);
+            imageArrayList.add(new ImageNameWithId(R.drawable.night_island_single, getResources().getString(R.string.night_island)));
+            imageArrayList.add(new ImageNameWithId(R.drawable.sweet_sleep_single, getResources().getString(R.string.sweet_sleep)));
+            imageArrayList.add(new ImageNameWithId(R.drawable.good_night_single, getResources().getString(R.string.good_night)));
+            imageArrayList.add(new ImageNameWithId(R.drawable.moon_clouds_single, getResources().getString(R.string.moon_clouds)));
         }
         musicItemArrayList.add(new MusicItem(false, -1, imageArrayList));
         return musicItemArrayList;

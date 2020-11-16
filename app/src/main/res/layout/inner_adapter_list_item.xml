@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relativeLayoutInfoInner"
     android:layout_width="197dp"
-    android:layout_height="195dp"
+    android:layout_height="wrap_content"
+    android:background="#021545"
     android:padding="10dp">
 
     <RelativeLayout
@@ -11,9 +12,29 @@
 
         <ImageView
             android:id="@+id/imageViewInnerAdapter"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="197dp"
+            android:layout_height="118dp"
+            android:src="@drawable/night_island_single"
             android:scaleType="fitXY" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewMusicName"
+            android:text="@string/night_island"
+            android:textColor="@color/white"
+            android:layout_marginTop="5dp"
+            android:textSize="16sp"
+            android:layout_below="@id/imageViewInnerAdapter"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_45_min_sleep_music"
+            android:textColor="@color/grey"
+            android:layout_below="@id/textViewMusicName"
+            android:layout_marginTop="5dp"
+            android:textSize="12sp"/>
 
     </RelativeLayout>
 
