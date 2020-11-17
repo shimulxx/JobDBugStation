@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#03174C">
+
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/exoPlayerViewContentFragment"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:resize_mode="fill"
+        app:played_color="@color/red"
+        app:unplayed_color="@color/white"
+        app:buffered_color="@color/light_green"
+        app:scrubber_color="@color/red"
+        app:show_timeout="1500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:controller_layout_id="@layout/exo_config"/>
+
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/player_vector_one"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="290dp"
+        android:src="@drawable/vector_two"
+        android:scaleType="fitXY"
+        android:id="@+id/imageViewLikeBottle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="130dp"
+        android:src="@drawable/vector_three"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:layout_width="110dp"
+        android:layout_height="80dp"
+        android:src="@drawable/vector_four"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:layout_width="290dp"
+        android:layout_height="400dp"
+        android:src="@drawable/vector_five"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toBottomOf="@id/imageViewLikeBottle"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:layout_width="210dp"
+        android:layout_height="340dp"
+        android:layout_marginTop="190dp"
+        android:id="@+id/imageViewTest"
+        android:src="@drawable/vector_six"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:scaleType="fitXY" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/image_cross"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"/>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/image_download"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="35dp"/>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/image_love"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="90dp"
+        android:layout_marginTop="35dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

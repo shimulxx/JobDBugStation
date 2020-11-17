@@ -8,13 +8,14 @@ import android.util.Log;
 
 import com.duet.jobdebugstation.Adapters.InnerAdapter;
 import com.duet.jobdebugstation.Fragments.BeforePlayFragment;
+import com.duet.jobdebugstation.Fragments.PlayerFragment;
 import com.duet.jobdebugstation.Fragments.SleepMusicFragment;
 import com.duet.jobdebugstation.Fragments.SleepStoriesFragment;
 import com.duet.jobdebugstation.Fragments.WelcomeFragment;
 
 public class MainActivity extends AppCompatActivity implements InnerAdapter.Work {
 
-    private Fragment welcomeFragment, sleepStoriesFragment, sleepMusicFragment, beforePlayFragment;
+    private Fragment welcomeFragment, sleepStoriesFragment, sleepMusicFragment, beforePlayFragment, playerFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +23,9 @@ public class MainActivity extends AppCompatActivity implements InnerAdapter.Work
         setContentView(R.layout.activity_main);
         //loadWelcomeFragment();
         //loadSleepStoriesFragment();
-        loadSleepMusicFragment();
+        //loadSleepMusicFragment();
         //loadBeforePlayFragment(0);
+        loadPlayerFragment();
     }
 
     @Override
@@ -33,6 +35,11 @@ public class MainActivity extends AppCompatActivity implements InnerAdapter.Work
         bundle.putInt("key", position);
         beforePlayFragment.setArguments(bundle);
         loadFragment(beforePlayFragment);
+    }
+
+    private void loadPlayerFragment(){
+        playerFragment = new PlayerFragment();
+        loadFragment(playerFragment);
     }
 
     private void loadSleepMusicFragment(){
