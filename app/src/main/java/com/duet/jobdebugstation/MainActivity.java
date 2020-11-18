@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.duet.jobdebugstation.Adapters.InnerAdapter;
 import com.duet.jobdebugstation.Fragments.BeforePlayFragment;
@@ -27,11 +28,18 @@ public class MainActivity extends AppCompatActivity implements InnerAdapter.Work
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadWelcomeFragment();
+        AppUtilities.initThreadPoolService();
+        //loadWelcomeFragment();
         //loadSleepStoriesFragment();
         //loadSleepMusicFragment();
         //loadBeforePlayFragment(0);
         //loadPlayerFragment("ddd");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loadWelcomeFragment();
     }
 
     @Override
