@@ -27,8 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@color/grey"
         android:text="@string/sleep_music"
-        android:textStyle="bold"
-        android:textSize="12sp"
+        android:textSize="13sp"
         android:layout_marginTop="350dp"/>
 
     <com.google.android.exoplayer2.ui.PlayerView

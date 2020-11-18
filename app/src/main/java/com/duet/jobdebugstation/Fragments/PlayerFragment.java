@@ -1,14 +1,11 @@
 package com.duet.jobdebugstation.Fragments;
 
-import android.content.ContentResolver;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,8 +24,6 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.RawResourceDataSource;
 import com.google.android.exoplayer2.util.Util;
 
-import java.io.File;
-import java.io.IOException;
 
 
 public class PlayerFragment extends Fragment {
@@ -45,13 +40,11 @@ public class PlayerFragment extends Fragment {
 
     private TextView textViewTitle;
 
-    private String contentUrl;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.player_fragment_list_item, container, false);
-        contentUrl = "";
         initView(view);
         setTitle();
         return view;
@@ -68,16 +61,12 @@ public class PlayerFragment extends Fragment {
         textViewTitle = view.findViewById(R.id.textViewTitle);
     }
 
-    private void initPlayer(String urlString) {
+    private void initPlayer() {
         player = new SimpleExoPlayer.Builder(getActivity()).build();
         playerView.setPlayer(player);
         playerView.setControllerHideOnTouch(false);
         playerView.setControllerShowTimeoutMs(0);
-        //String filename = "sample_file.mp3";
-        //Uri uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + File.pathSeparator + File.separator + getActivity().getPackageName() + "/raw/" + filename);
-        //Uri uri = Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + R.raw.sample_file);
         MediaSource mediaSource = buildMediaSourceSecond();
-        //MediaSource mediaSource = buildMediaSource(Uri.parse(urlString));
         player.setPlayWhenReady(playWhenReady);
         player.seekTo(currentWindow, playBackPosition);
         player.addMediaSource(mediaSource);
@@ -86,16 +75,11 @@ public class PlayerFragment extends Fragment {
 
     private MediaSource buildMediaSourceSecond()  {
         final RawResourceDataSource rawResourceDataSource = new RawResourceDataSource(getContext());
-        //DataSource rawDataSource = new RawResourceDataSource(getActivity());
-        // open the /raw resource file
         try{
             rawResourceDataSource.open(new DataSpec(RawResourceDataSource.buildRawResourceUri(R.raw.sample_file)));
         }catch (Exception e){ }
 
-        // Create media Item
         MediaItem mediaItem = MediaItem.fromUri(rawResourceDataSource.getUri());
-
-        // create a media source with the raw DataSource
 
         DataSource.Factory factory = new DataSource.Factory() {
             @Override
@@ -128,13 +112,13 @@ public class PlayerFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        if (Util.SDK_INT >= 24) initPlayer(contentUrl);
+        if (Util.SDK_INT >= 24) initPlayer();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (Util.SDK_INT < 24 || player == null) initPlayer(contentUrl);
+        if (Util.SDK_INT < 24 || player == null) initPlayer();
     }
 
     @Override
