@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.duet.jobdebugstation.Adapters.InnerAdapter;
+import com.duet.jobdebugstation.MainActivity;
 import com.duet.jobdebugstation.Model.ImageNameWithId;
 import com.duet.jobdebugstation.R;
 
@@ -26,40 +28,51 @@ public class BeforePlayFragment extends Fragment {
         View view = inflater.inflate(R.layout.before_play_fragment_list_item, container, false);
         loadTitleImage(view);
         initRecView(view);
+        setOnclickListerButton(view);
         return view;
     }
+
+    private void setOnclickListerButton(View view){
+        Button playButton  = view.findViewById(R.id.playButtonBeforePlay);
+        MainActivity mainActivity = (MainActivity)getActivity();
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.loadPlayerFragment(getArguments().getString("title"));
+            }
+        });
+    }
+
     private void loadTitleImage(View view){
         int position = getArguments().getInt("key");
+        String title = getArguments().getString("title");
         ImageView titleImageView = view.findViewById(R.id.titleImageView);
         TextView musicName = view.findViewById(R.id.textMusicName);
+        musicName.setText(title);
         position = position % 4;
         switch (position){
-            case 0 : loadNightIsland(titleImageView, musicName); break;
-            case 1 : loadSweetSleep(titleImageView, musicName); break;
-            case 2 : loadGoodNight(titleImageView, musicName); break;
-            case 3 : loadMoonClouds(titleImageView, musicName); break;
+            case 0 : loadNightIsland(titleImageView); break;
+            case 1 : loadSweetSleep(titleImageView); break;
+            case 2 : loadGoodNight(titleImageView); break;
+            case 3 : loadMoonClouds(titleImageView); break;
             default: break;
         }
     }
 
-    private void loadNightIsland(ImageView titleImageView, TextView musicName){
+    private void loadNightIsland(ImageView titleImageView){
         titleImageView.setImageResource(R.drawable.night_island_large);
-        musicName.setText(getResources().getString(R.string.night_island));
     }
 
-    private void loadSweetSleep(ImageView titleImageView, TextView musicName){
+    private void loadSweetSleep(ImageView titleImageView){
         titleImageView.setImageResource(R.drawable.sweet_sleep_large);
-        musicName.setText(getResources().getString(R.string.sweet_sleep));
     }
 
-    private void loadGoodNight(ImageView titleImageView, TextView musicName){
+    private void loadGoodNight(ImageView titleImageView){
         titleImageView.setImageResource(R.drawable.good_night_large);
-        musicName.setText(getResources().getString(R.string.good_night));
     }
 
-    private void loadMoonClouds(ImageView titleImageView, TextView musicName){
+    private void loadMoonClouds(ImageView titleImageView){
         titleImageView.setImageResource(R.drawable.moon_clouds_large);
-        musicName.setText(getResources().getString(R.string.moon_clouds));
     }
 
     private void initRecView(View view){

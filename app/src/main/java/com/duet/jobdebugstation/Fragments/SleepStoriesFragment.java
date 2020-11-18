@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.duet.jobdebugstation.Adapters.MusicOuterAdapter;
+import com.duet.jobdebugstation.MainActivity;
 import com.duet.jobdebugstation.Model.ImageNameWithId;
 import com.duet.jobdebugstation.Model.MusicItem;
 import com.duet.jobdebugstation.R;
@@ -18,6 +20,9 @@ import com.duet.jobdebugstation.R;
 import java.util.ArrayList;
 
 public class SleepStoriesFragment extends Fragment {
+
+    private MainActivity mainActivity;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,6 +34,14 @@ public class SleepStoriesFragment extends Fragment {
     private void initViews(View view){
         ArrayList<MusicItem> musicItemArrayList = createMusicItemArrayList();
         recyclerViewWork(view, musicItemArrayList);
+        ImageView imageViewMusic = view.findViewById(R.id.imageViewMusic);
+        mainActivity = ((MainActivity)getActivity());
+        imageViewMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.loadSleepMusicFragment();
+            }
+        });
     }
 
     private ArrayList<MusicItem> createMusicItemArrayList(){

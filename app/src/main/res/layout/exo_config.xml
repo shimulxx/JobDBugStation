@@ -8,37 +8,41 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginTop="200dp"
         android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
         android:paddingTop="0dp"
-        android:weightSum="3">
+        android:weightSum="5">
 
         <ImageButton
             android:id="@id/exo_rew"
-            style="@style/ExoMediaButton.Rewind"
-            android:layout_weight="1" />
+            android:background="@drawable/backward_image"
+            android:layout_height="45dp"
+            android:layout_width="0dp"
+            android:layout_weight="1.5" />
 
         <ImageButton
             android:id="@id/exo_play"
             style="@style/ExoMediaButton.Play"
-            android:layout_weight="1" />
+            android:layout_weight="2" />
 
         <ImageButton
             android:id="@id/exo_pause"
             style="@style/ExoMediaButton.Pause"
-            android:layout_weight="1" />
+            android:layout_weight="2" />
 
         <ImageButton
             android:id="@id/exo_ffwd"
-            style="@style/ExoMediaButton.FastForward"
-            android:layout_weight="1" />
+            android:background="@drawable/forward_image"
+            android:layout_height="45dp"
+            android:layout_width="0dp"
+            android:layout_weight="1.5" />
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -54,14 +58,18 @@
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
             android:textColor="#FFBEBEBE"
-            android:textSize="20sp"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="10dp"
+            android:layout_below="@id/exo_progress_placeholder"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <View
             android:id="@id/exo_progress_placeholder"
-            android:layout_width="0dp"
-            android:layout_height="26dp"
-            android:layout_weight="1" />
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_height="26dp" />
 
         <TextView
             android:id="@id/exo_duration"
@@ -70,13 +78,17 @@
             android:includeFontPadding="false"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/exo_progress_placeholder"
             android:textColor="#FFBEBEBE"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </RelativeLayout>

@@ -25,7 +25,7 @@ public class InnerAdapter extends RecyclerView.Adapter<InnerAdapter.MyViewHolder
     private final boolean singleCallType, beforeCallType;
 
     public interface Work{
-        void loadBeforePlayFragment(int position);
+        void loadBeforePlayFragment(int position, String title);
     }
 
     private Work work;
@@ -80,7 +80,7 @@ public class InnerAdapter extends RecyclerView.Adapter<InnerAdapter.MyViewHolder
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    work.loadBeforePlayFragment(position);
+                    work.loadBeforePlayFragment(position, imagesArrayList.get(position).getName());
                 }
             });
         }

@@ -16,11 +16,14 @@ import com.duet.jobdebugstation.R;
 
 public class WelcomeFragment extends Fragment {
 
+    private MainActivity mainActivity;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.start_fragment_list_item, container, false);
         initView(view);
+        mainActivity = (MainActivity)getActivity();
         return view;
     }
 
@@ -33,7 +36,7 @@ public class WelcomeFragment extends Fragment {
         buttonGetStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), String.valueOf((getContext() instanceof MainActivity)), Toast.LENGTH_SHORT).show();
+                mainActivity.loadSleepStoriesFragment();
             }
         });
     }

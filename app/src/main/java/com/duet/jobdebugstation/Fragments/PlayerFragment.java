@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,6 +43,8 @@ public class PlayerFragment extends Fragment {
 
     private ImageButton exoPlay, exoPause;
 
+    private TextView textViewTitle;
+
     private String contentUrl;
 
     @Nullable
@@ -50,13 +53,19 @@ public class PlayerFragment extends Fragment {
         View view = inflater.inflate(R.layout.player_fragment_list_item, container, false);
         contentUrl = "";
         initView(view);
+        setTitle();
         return view;
+    }
+
+    private void setTitle(){
+        textViewTitle.setText(getArguments().getString("title"));
     }
 
     private void initView(View view){
         playerView = view.findViewById(R.id.exoPlayerViewContentFragment);
         exoPlay = playerView.findViewById(R.id.exo_play);
         exoPause = playerView.findViewById(R.id.exo_pause);
+        textViewTitle = view.findViewById(R.id.textViewTitle);
     }
 
     private void initPlayer(String urlString) {
